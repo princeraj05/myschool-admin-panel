@@ -1,24 +1,27 @@
-import { useEffect,useState } from "react"
-import axios from "axios"
-import { FaBookOpen, FaCalendarAlt } from "react-icons/fa"
+import { useEffect,useState } from "react";
+import axios from "axios";
+import { FaBookOpen, FaCalendarAlt } from "react-icons/fa";
 
 function StudentExams(){
 
-const [exams,setExams] = useState([])
+const API = import.meta.env.VITE_API_URL;
 
-const token = localStorage.getItem("token")
+const [exams,setExams] = useState([]);
+
+const token = localStorage.getItem("token");
 
 useEffect(()=>{
 
 axios.get(
-"http://localhost:5000/api/student/exams",
+`${API}/api/student/exams`,
 {
 headers:{ Authorization:`Bearer ${token}` }
 }
 )
 .then(res=>setExams(res.data))
+.catch(err=>console.log(err));
 
-},[])
+},[]);
 
 return(
 
@@ -53,9 +56,7 @@ No upcoming exams
 </td>
 </tr>
 
-) : (
-
-exams.map((e,i)=>(
+):(exams.map((e,i)=>(
 
 <tr key={i} className="border-t hover:bg-gray-50 transition">
 
@@ -79,9 +80,7 @@ exams.map((e,i)=>(
 
 </tr>
 
-))
-
-)}
+)))}
 
 </tbody>
 
@@ -95,4 +94,4 @@ exams.map((e,i)=>(
 
 }
 
-export default StudentExams
+export default StudentExams;

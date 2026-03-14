@@ -1,16 +1,18 @@
-import { useEffect,useState } from "react"
-import axios from "axios"
+import { useEffect,useState } from "react";
+import axios from "axios";
 
 function StudentAttendance(){
 
-const [data,setData] = useState([])
+const API = import.meta.env.VITE_API_URL;
+
+const [data,setData] = useState([]);
 
 useEffect(()=>{
 
-const token = localStorage.getItem("token")
+const token = localStorage.getItem("token");
 
 axios.get(
-"http://localhost:5000/api/student/attendance",
+`${API}/api/student/attendance`,
 {
 headers:{
 Authorization:`Bearer ${token}`
@@ -18,8 +20,9 @@ Authorization:`Bearer ${token}`
 }
 )
 .then(res=>setData(res.data))
+.catch(err=>console.log(err));
 
-},[])
+},[]);
 
 return(
 
@@ -44,7 +47,15 @@ My Attendance
 
 <tbody>
 
-{data.map((a,i)=>(
+{data.length === 0 ? (
+
+<tr>
+<td colSpan="2" className="text-center py-6">
+No attendance records
+</td>
+</tr>
+
+):(data.map((a,i)=>(
 
 <tr key={i} className="border-t hover:bg-gray-50 transition">
 
@@ -70,7 +81,7 @@ a.status === "Present"
 
 </tr>
 
-))}
+)))}
 
 </tbody>
 
@@ -84,4 +95,4 @@ a.status === "Present"
 
 }
 
-export default StudentAttendance
+export default StudentAttendance;
