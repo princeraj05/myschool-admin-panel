@@ -10,6 +10,9 @@ FaSave
 
 function AdminProfile(){
 
+const API = import.meta.env.VITE_API_URL;
+const token = localStorage.getItem("token");
+
 const [admin,setAdmin] = useState({
 name:"",
 email:"",
@@ -19,16 +22,16 @@ role:""
 const [editMode,setEditMode] = useState(false);
 
 useEffect(()=>{
-
 fetchProfile();
-
 },[]);
 
 
 const fetchProfile = ()=>{
 
 axios
-.get("http://localhost:5000/api/admin/profile")
+.get(`${API}/api/admin/profile`,{
+headers:{ Authorization:`Bearer ${token}` }
+})
 .then(res=>{
 
 if(res.data.success){
@@ -57,10 +60,13 @@ const handleSave = ()=>{
 
 axios
 .put(
-"http://localhost:5000/api/admin/profile/update",
+`${API}/api/admin/profile/update`,
 {
 name:admin.name,
 email:admin.email
+},
+{
+headers:{ Authorization:`Bearer ${token}` }
 }
 )
 
