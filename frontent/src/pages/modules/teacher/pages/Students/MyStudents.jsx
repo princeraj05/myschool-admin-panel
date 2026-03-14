@@ -3,6 +3,8 @@ import axios from "axios";
 
 function MyStudents(){
 
+const API = import.meta.env.VITE_API_URL;
+
 const [students,setStudents] = useState([]);
 const [loading,setLoading] = useState(true);
 
@@ -15,7 +17,7 @@ try{
 const token = localStorage.getItem("token");
 
 const res = await axios.get(
-"http://localhost:5000/api/teacher/my-students",
+`${API}/api/teacher/my-students`,
 {
 headers:{
 Authorization:`Bearer ${token}`
