@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
-import { FaBook } from "react-icons/fa"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { FaBook } from "react-icons/fa";
 
 function StudentSubjects(){
 
-const [subjects,setSubjects] = useState([])
+const API = import.meta.env.VITE_API_URL;
+
+const [subjects,setSubjects] = useState([]);
 
 useEffect(()=>{
 
-const token = localStorage.getItem("token")
+const token = localStorage.getItem("token");
 
 axios.get(
-"http://localhost:5000/api/student/subjects",
+`${API}/api/student/subjects`,
 {
 headers:{
 Authorization:`Bearer ${token}`
@@ -19,8 +21,9 @@ Authorization:`Bearer ${token}`
 }
 )
 .then(res=>setSubjects(res.data))
+.catch(err=>console.log(err));
 
-},[])
+},[]);
 
 return(
 
@@ -29,6 +32,12 @@ return(
 <h2 className="text-2xl font-bold mb-6 text-gray-800">
 My Subjects
 </h2>
+
+{subjects.length === 0 ? (
+
+<p>No subjects found</p>
+
+) : (
 
 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
 
@@ -61,10 +70,12 @@ className="bg-white shadow-md rounded-lg p-5 border hover:shadow-lg transition d
 
 </div>
 
+)}
+
 </div>
 
 )
 
 }
 
-export default StudentSubjects
+export default StudentSubjects;

@@ -4,6 +4,8 @@ import { FaUserGraduate, FaEnvelope, FaUserTag } from "react-icons/fa";
 
 function StudentProfile() {
 
+const API = import.meta.env.VITE_API_URL;
+
 const [student,setStudent] = useState({
 name:"",
 email:"",
@@ -15,7 +17,7 @@ useEffect(()=>{
 const token = localStorage.getItem("token");
 
 axios.get(
-"http://localhost:5000/api/student/profile",
+`${API}/api/student/profile`,
 {
 headers:{
 Authorization:`Bearer ${token}`
