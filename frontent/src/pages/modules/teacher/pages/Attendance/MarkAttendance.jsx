@@ -3,176 +3,180 @@ import axios from "axios";
 
 function MarkAttendance() {
 
-  const [students, setStudents] = useState([]);
-  const [attendance, setAttendance] = useState({});
-  const [loading, setLoading] = useState(true);
+const API = import.meta.env.VITE_API_URL;
 
-  // ================= FETCH STUDENTS =================
-  useEffect(() => {
+const [students, setStudents] = useState([]);
+const [attendance, setAttendance] = useState({});
+const [loading, setLoading] = useState(true);
 
-    const fetchStudents = async () => {
+useEffect(() => {
 
-      try {
+const fetchStudents = async () => {
 
-        const token = localStorage.getItem("token");
+try {
 
-        const res = await axios.get(
-          "http://localhost:5000/api/teacher/my-students",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
+const token = localStorage.getItem("token");
 
-        setStudents(res.data);
-        setLoading(false);
+const res = await axios.get(
+`${API}/api/teacher/my-students`,
+{
+headers:{
+Authorization:`Bearer ${token}`
+}
+}
+);
 
-      } catch (err) {
+setStudents(res.data);
+setLoading(false);
 
-        console.log(err);
-        setLoading(false);
+}catch(err){
 
-      }
+console.log(err);
+setLoading(false);
 
-    };
+}
 
-    fetchStudents();
+};
 
-  }, []);
+fetchStudents();
 
-
-
-  // ================= HANDLE CHANGE =================
-  const handleChange = (studentId, status) => {
-
-    setAttendance({
-      ...attendance,
-      [studentId]: status
-    });
-
-  };
+},[]);
 
 
 
-  // ================= SAVE ATTENDANCE =================
-  const handleSubmit = async () => {
+const handleChange = (studentId,status)=>{
 
-  try {
-
-    const token = localStorage.getItem("token");
-
-    for (const studentId in attendance) {
-
-      const student = students.find(s => s._id === studentId);
-
-      await axios.post(
-        "http://localhost:5000/api/attendance/mark",
-        {
-          student: studentId,
-          classId: student.class,
-          status: attendance[studentId]
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
-
-    }
-
-    alert("Attendance saved successfully");
-
-  } catch (err) {
-
-    console.log(err.response?.data || err.message);
-
-  }
+setAttendance({
+...attendance,
+[studentId]:status
+});
 
 };
 
 
 
-  return (
+const handleSubmit = async ()=>{
 
-    <div>
+try{
 
-      <h1 className="text-2xl font-bold mb-4">
-        Mark Attendance
-      </h1>
+const token = localStorage.getItem("token");
 
+for(const studentId in attendance){
 
-      {loading ? (
+const student = students.find(s=>s._id === studentId);
 
-        <p>Loading students...</p>
+await axios.post(
+`${API}/api/attendance/mark`,
+{
+student:studentId,
+classId:student.class,
+status:attendance[studentId]
+},
+{
+headers:{
+Authorization:`Bearer ${token}`
+}
+}
+);
 
-      ) : students.length === 0 ? (
+}
 
-        <p>No students found</p>
+alert("Attendance saved successfully");
 
-      ) : (
+}catch(err){
 
-        <table className="w-full bg-white shadow">
+console.log(err.response?.data || err.message);
 
-          <thead className="bg-gray-200">
+}
 
-            <tr>
-              <th className="p-2">Student</th>
-              <th className="p-2">Present</th>
-              <th className="p-2">Absent</th>
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            {students.map((s) => (
-
-              <tr key={s._id} className="border">
-
-                <td className="p-2">
-                  {s.name}
-                </td>
-
-                <td className="p-2 text-center">
-                  <input
-                    type="radio"
-                    name={s._id}
-                    onChange={() => handleChange(s._id, "Present")}
-                  />
-                </td>
-
-                <td className="p-2 text-center">
-                  <input
-                    type="radio"
-                    name={s._id}
-                    onChange={() => handleChange(s._id, "Absent")}
-                  />
-                </td>
-
-              </tr>
-
-            ))}
-
-          </tbody>
-
-        </table>
-
-      )}
+};
 
 
 
-      <button
-        onClick={handleSubmit}
-        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
-      >
-        Save Attendance
-      </button>
+return(
 
-    </div>
+<div>
 
-  );
+<h1 className="text-2xl font-bold mb-4">
+Mark Attendance
+</h1>
+
+
+{loading ? (
+
+<p>Loading students...</p>
+
+) : students.length === 0 ? (
+
+<p>No students found</p>
+
+) : (
+
+<table className="w-full bg-white shadow">
+
+<thead className="bg-gray-200">
+
+<tr>
+<th className="p-2">Student</th>
+<th className="p-2">Present</th>
+<th className="p-2">Absent</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{students.map((s)=>(
+
+<tr key={s._id} className="border">
+
+<td className="p-2">
+{s.name}
+</td>
+
+<td className="p-2 text-center">
+
+<input
+type="radio"
+name={s._id}
+onChange={()=>handleChange(s._id,"Present")}
+/>
+
+</td>
+
+<td className="p-2 text-center">
+
+<input
+type="radio"
+name={s._id}
+onChange={()=>handleChange(s._id,"Absent")}
+/>
+
+</td>
+
+</tr>
+
+))}
+
+</tbody>
+
+</table>
+
+)}
+
+
+<button
+onClick={handleSubmit}
+className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+>
+
+Save Attendance
+
+</button>
+
+</div>
+
+);
 
 }
 

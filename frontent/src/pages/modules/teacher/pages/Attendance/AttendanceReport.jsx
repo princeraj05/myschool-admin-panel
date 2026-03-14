@@ -3,6 +3,8 @@ import axios from "axios";
 
 function AttendanceReport(){
 
+const API = import.meta.env.VITE_API_URL;
+
 const [data,setData] = useState([]);
 const [loading,setLoading] = useState(true);
 
@@ -15,7 +17,7 @@ try{
 const token = localStorage.getItem("token");
 
 const res = await axios.get(
-"http://localhost:5000/api/attendance/report",
+`${API}/api/attendance/report`,
 {
 headers:{
 Authorization:`Bearer ${token}`
@@ -57,8 +59,6 @@ return(
 
 <div>
 
-{/* Header */}
-
 <div className="flex justify-between items-center mb-6">
 
 <h1 className="text-3xl font-bold text-gray-800">
@@ -71,8 +71,6 @@ Total Records : {data.length}
 
 </div>
 
-
-{/* Card Container */}
 
 <div className="bg-white rounded-xl shadow overflow-hidden">
 
