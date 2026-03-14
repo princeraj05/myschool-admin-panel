@@ -44,7 +44,11 @@ cd frontend
 npm install
 npm run dev
 ```
+Live Demo:
+https://myschool-admin-panel.vercel.app
 
+Backend API:
+https://myschool-admin-panel.onrender.com
 ## Author
 
 Prince Raj
