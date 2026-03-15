@@ -25,7 +25,6 @@ useEffect(()=>{
 fetchProfile();
 },[]);
 
-
 const fetchProfile = ()=>{
 
 axios
@@ -33,18 +32,15 @@ axios
 headers:{ Authorization:`Bearer ${token}` }
 })
 .then(res=>{
-
 if(res.data.success){
 setAdmin(res.data.admin);
 }
-
 })
 .catch(err=>{
 console.log(err);
 });
 
 };
-
 
 const handleChange = (e)=>{
 
@@ -54,7 +50,6 @@ setAdmin({
 });
 
 };
-
 
 const handleSave = ()=>{
 
@@ -71,11 +66,8 @@ headers:{ Authorization:`Bearer ${token}` }
 )
 
 .then(()=>{
-
 setEditMode(false);
-
 fetchProfile();
-
 })
 
 .catch(err=>{
@@ -84,38 +76,37 @@ console.log(err);
 
 };
 
-
 return(
 
-<div>
+<div className="p-4 sm:p-6 flex justify-center">
 
-<h1 className="text-3xl font-bold mb-6 text-gray-800">
+<div className="w-full max-w-md">
+
+<h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800 text-center sm:text-left">
 Admin Profile
 </h1>
 
-<div className="bg-white rounded-xl shadow-lg p-8 max-w-md">
+<div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 w-full">
 
 <div className="flex flex-col items-center mb-6">
 
-<div className="w-24 h-24 bg-blue-600 text-white flex items-center justify-center rounded-full text-3xl font-bold shadow">
+<div className="w-20 h-20 sm:w-24 sm:h-24 bg-blue-600 text-white flex items-center justify-center rounded-full text-2xl sm:text-3xl font-bold shadow">
 
 {admin.name ? admin.name.charAt(0).toUpperCase() : "A"}
 
 </div>
 
-<h2 className="text-xl font-semibold mt-4">
+<h2 className="text-lg sm:text-xl font-semibold mt-4 text-center">
 {admin.name}
 </h2>
 
-<p className="text-gray-500">
+<p className="text-gray-500 text-sm sm:text-base">
 {admin.role}
 </p>
 
 </div>
 
-
 <div className="space-y-4">
-
 
 <div className="flex items-center gap-3 text-gray-700">
 
@@ -133,14 +124,13 @@ className="border p-2 rounded w-full"
 
 ) : (
 
-<span>
+<span className="text-sm sm:text-base">
 <strong>Name:</strong> {admin.name}
 </span>
 
 )}
 
 </div>
-
 
 <div className="flex items-center gap-3 text-gray-700">
 
@@ -158,7 +148,7 @@ className="border p-2 rounded w-full"
 
 ) : (
 
-<span>
+<span className="text-sm sm:text-base">
 <strong>Email:</strong> {admin.email}
 </span>
 
@@ -166,19 +156,17 @@ className="border p-2 rounded w-full"
 
 </div>
 
-
 <div className="flex items-center gap-3 text-gray-700">
 
 <FaUserShield className="text-purple-600"/>
 
-<span>
+<span className="text-sm sm:text-base">
 <strong>Role:</strong> {admin.role}
 </span>
 
 </div>
 
 </div>
-
 
 {editMode ? (
 
@@ -207,6 +195,8 @@ Edit Profile
 </button>
 
 )}
+
+</div>
 
 </div>
 
