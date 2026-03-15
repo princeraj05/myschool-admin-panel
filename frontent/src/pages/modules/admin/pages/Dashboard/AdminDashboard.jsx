@@ -48,9 +48,7 @@ function AdminDashboard() {
         setData(res.data);
 
       }catch(err){
-
         console.log("Dashboard error:",err);
-
       }
 
     };
@@ -69,12 +67,12 @@ function AdminDashboard() {
 
   return(
 
-    <div className="w-full">
+    <div className="w-full px-3 sm:px-4 md:px-6">
 
       {/* Header */}
 
       <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
           Admin Dashboard
         </h1>
       </div>
@@ -82,10 +80,10 @@ function AdminDashboard() {
 
       {/* Stats */}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
 
 
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-xl shadow hover:scale-105 transition">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-5 rounded-xl shadow hover:scale-105 transition">
 
           <div className="flex justify-between items-center">
 
@@ -102,7 +100,7 @@ function AdminDashboard() {
 
 
 
-        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-xl shadow hover:scale-105 transition">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-5 rounded-xl shadow hover:scale-105 transition">
 
           <div className="flex justify-between items-center">
 
@@ -119,7 +117,7 @@ function AdminDashboard() {
 
 
 
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-xl shadow hover:scale-105 transition">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-5 rounded-xl shadow hover:scale-105 transition">
 
           <div className="flex justify-between items-center">
 
@@ -136,7 +134,7 @@ function AdminDashboard() {
 
 
 
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-xl shadow hover:scale-105 transition">
+        <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-5 rounded-xl shadow hover:scale-105 transition">
 
           <div className="flex justify-between items-center">
 
@@ -167,19 +165,23 @@ function AdminDashboard() {
             System Overview
           </h2>
 
-          <ResponsiveContainer width="100%" height={300}>
+          <div className="w-full h-[250px] sm:h-[300px]">
 
-            <BarChart data={chartData}>
+            <ResponsiveContainer width="100%" height="100%">
 
-              <XAxis dataKey="name"/>
-              <YAxis/>
-              <Tooltip/>
+              <BarChart data={chartData}>
 
-              <Bar dataKey="value" fill="#6366f1"/>
+                <XAxis dataKey="name"/>
+                <YAxis/>
+                <Tooltip/>
 
-            </BarChart>
+                <Bar dataKey="value" fill="#6366f1"/>
 
-          </ResponsiveContainer>
+              </BarChart>
+
+            </ResponsiveContainer>
+
+          </div>
 
         </div>
 

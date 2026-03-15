@@ -115,14 +115,14 @@ setExams(exams.filter(e=>e._id!==id));
 
 return(
 
-<div className="p-6">
+<div className="w-full px-3 sm:px-4 md:px-6">
 
-<h1 className="text-2xl font-bold mb-6 text-gray-800">
+<h1 className="text-xl sm:text-2xl font-bold mb-6 text-gray-800">
 Exam Schedule
 </h1>
 
 
-<div className="bg-white rounded-xl shadow-lg p-6 mb-8 border">
+<div className="bg-white rounded-xl shadow-lg p-4 md:p-6 mb-8 border">
 
 <h2 className="text-lg font-semibold mb-4 text-gray-700">
 Create New Exam
@@ -130,7 +130,7 @@ Create New Exam
 
 <form
 onSubmit={handleSubmit}
-className="grid md:grid-cols-3 gap-4"
+className="grid grid-cols-1 md:grid-cols-3 gap-4"
 >
 
 
@@ -201,7 +201,7 @@ required
 <div className="md:col-span-3">
 
 <button
-className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow transition"
+className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow transition"
 >
 Add Exam
 </button>
@@ -214,17 +214,19 @@ Add Exam
 
 
 
-<div className="bg-white rounded-xl shadow-lg overflow-hidden border">
+<div className="bg-white rounded-xl shadow-lg border">
 
-<table className="w-full">
+<div className="overflow-x-auto">
+
+<table className="min-w-full">
 
 <thead className="bg-gray-100 text-gray-700">
 
 <tr>
-<th className="px-6 py-3 text-left">Class</th>
-<th className="px-6 py-3 text-left">Subject</th>
-<th className="px-6 py-3 text-left">Date</th>
-<th className="px-6 py-3 text-left">Action</th>
+<th className="px-4 md:px-6 py-3 text-left">Class</th>
+<th className="px-4 md:px-6 py-3 text-left">Subject</th>
+<th className="px-4 md:px-6 py-3 text-left">Date</th>
+<th className="px-4 md:px-6 py-3 text-left">Action</th>
 </tr>
 
 </thead>
@@ -248,7 +250,7 @@ i % 2 === 0 ? "bg-white" : "bg-gray-50"
 }`}
 >
 
-<td className="px-6 py-4">
+<td className="px-4 md:px-6 py-4">
 
 <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
 {e.class?.name} ({e.class?.section})
@@ -256,7 +258,7 @@ i % 2 === 0 ? "bg-white" : "bg-gray-50"
 
 </td>
 
-<td className="px-6 py-4">
+<td className="px-4 md:px-6 py-4">
 
 <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">
 {e.subject?.name}
@@ -264,11 +266,11 @@ i % 2 === 0 ? "bg-white" : "bg-gray-50"
 
 </td>
 
-<td className="px-6 py-4 text-gray-600">
+<td className="px-4 md:px-6 py-4 text-gray-600">
 {new Date(e.date).toLocaleDateString()}
 </td>
 
-<td className="px-6 py-4">
+<td className="px-4 md:px-6 py-4">
 
 <button
 onClick={()=>deleteExam(e._id)}
@@ -286,6 +288,8 @@ Delete
 </tbody>
 
 </table>
+
+</div>
 
 </div>
 
