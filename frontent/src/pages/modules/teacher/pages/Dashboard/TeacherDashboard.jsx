@@ -66,15 +66,17 @@ const chartData = [
 
 return(
 
-<div>
+<div className="p-4 md:p-6">
 
 <div className="mb-6">
-<h1 className="text-3xl font-bold">
+<h1 className="text-2xl md:text-3xl font-bold">
 Teacher Dashboard
 </h1>
 </div>
 
-<div className="grid md:grid-cols-4 gap-6 mb-8">
+{/* CARDS */}
+
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
 
 <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-xl shadow">
 <div className="flex justify-between items-center">
@@ -119,7 +121,9 @@ Teacher Dashboard
 </div>
 
 
-<div className="grid md:grid-cols-2 gap-6">
+{/* CHART + QUICK INFO */}
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
 <div className="bg-white p-6 rounded-xl shadow">
 
@@ -127,7 +131,9 @@ Teacher Dashboard
 Teacher Overview
 </h2>
 
-<ResponsiveContainer width="100%" height={300}>
+<div className="w-full h-[300px]">
+
+<ResponsiveContainer width="100%" height="100%">
 <BarChart data={chartData}>
 <XAxis dataKey="name"/>
 <YAxis/>
@@ -138,6 +144,8 @@ Teacher Overview
 
 </div>
 
+</div>
+
 
 <div className="bg-white p-6 rounded-xl shadow">
 
@@ -145,7 +153,7 @@ Teacher Overview
 Quick Info
 </h2>
 
-<ul className="space-y-3 text-gray-600">
+<ul className="space-y-3 text-gray-600 text-sm md:text-base">
 
 <li>👨‍🎓 My Students : {data.students}</li>
 <li>📚 My Subjects : {data.subjects}</li>
@@ -159,13 +167,17 @@ Quick Info
 </div>
 
 
+{/* RECENT STUDENTS */}
+
 <div className="bg-white p-6 rounded-xl shadow mt-8">
 
 <h2 className="text-xl font-semibold mb-4">
 My Recent Students
 </h2>
 
-<table className="w-full">
+<div className="overflow-x-auto">
+
+<table className="min-w-full">
 
 <thead className="bg-gray-100">
 
@@ -189,10 +201,12 @@ No students found
 ) : (
 
 data.recentStudents.map(student=>(
+
 <tr key={student._id} className="border-t">
 <td className="p-3">{student.name}</td>
 <td className="p-3">{student.email}</td>
 </tr>
+
 ))
 
 )}
@@ -200,6 +214,8 @@ data.recentStudents.map(student=>(
 </tbody>
 
 </table>
+
+</div>
 
 </div>
 

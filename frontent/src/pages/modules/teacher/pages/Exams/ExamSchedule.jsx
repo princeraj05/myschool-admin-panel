@@ -28,24 +28,26 @@ console.log(err);
 
 return(
 
-<div>
+<div className="p-4 md:p-6">
 
-<h1 className="text-2xl font-bold mb-6">
+<h1 className="text-xl md:text-2xl font-bold mb-6">
 Exam Schedule
 </h1>
 
-<p className="mb-4">
+<p className="mb-4 text-gray-500">
 Upcoming exams schedule
 </p>
 
-<table className="w-full bg-white shadow rounded">
+<div className="overflow-x-auto">
+
+<table className="min-w-full bg-white shadow rounded">
 
 <thead className="bg-gray-200">
 
 <tr>
-<th className="p-2">Class</th>
-<th className="p-2">Subject</th>
-<th className="p-2">Date</th>
+<th className="p-2 text-left">Class</th>
+<th className="p-2 text-left">Subject</th>
+<th className="p-2 text-left">Date</th>
 </tr>
 
 </thead>
@@ -83,6 +85,8 @@ No exams scheduled
 </tbody>
 
 </table>
+
+</div>
 
 </div>
 
