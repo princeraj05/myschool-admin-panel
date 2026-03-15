@@ -54,9 +54,10 @@ alert("Teacher Assigned Successfully");
 };
 
 return(
-<div className="p-6">
 
-<div className="bg-white rounded-xl shadow-lg p-6 w-[420px] border">
+<div className="p-4 md:p-6 flex justify-center">
+
+<div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md border">
 
 <h1 className="text-xl font-semibold mb-5 text-gray-700">
 Assign Teacher to Class
@@ -73,13 +74,13 @@ onChange={(e)=>setClassId(e.target.value)}
 <option>Select Class</option>
 
 {classes.map((cls)=>(
+
 <option key={cls._id} value={cls._id}>
 {cls.name} ({cls.section})
 </option>
 ))}
 </select>
 </div>
-
 
 <div className="flex items-center border rounded-lg px-3">
 <FaChalkboardTeacher className="text-gray-400 mr-2"/>
@@ -90,6 +91,7 @@ onChange={(e)=>setTeacherId(e.target.value)}
 <option>Select Teacher</option>
 
 {teachers.map((t)=>(
+
 <option key={t._id} value={t._id}>
 {t.name}
 </option>

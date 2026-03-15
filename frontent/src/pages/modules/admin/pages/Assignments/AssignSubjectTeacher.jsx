@@ -55,9 +55,9 @@ alert("Subject Assigned Successfully");
 
 return(
 
-<div className="p-6">
+<div className="p-4 md:p-6 flex justify-center">
 
-<div className="bg-white rounded-xl shadow-lg p-6 w-[420px] border">
+<div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md border">
 
 <h1 className="text-xl font-semibold mb-5 text-gray-700">
 Assign Subject to Teacher
@@ -74,13 +74,13 @@ onChange={(e)=>setSubjectId(e.target.value)}
 <option>Select Subject</option>
 
 {subjects.map((s)=>(
+
 <option key={s._id} value={s._id}>
 {s.name}
 </option>
 ))}
 </select>
 </div>
-
 
 <div className="flex items-center border rounded-lg px-3">
 <FaChalkboardTeacher className="text-gray-400 mr-2"/>
@@ -91,6 +91,7 @@ onChange={(e)=>setTeacherId(e.target.value)}
 <option>Select Teacher</option>
 
 {teachers.map((t)=>(
+
 <option key={t._id} value={t._id}>
 {t.name}
 </option>

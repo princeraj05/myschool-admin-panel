@@ -53,9 +53,10 @@ alert("Student Assigned Successfully");
 };
 
 return(
-<div className="p-6">
 
-<div className="bg-white rounded-xl shadow-lg p-6 w-[420px] border">
+<div className="p-4 md:p-6 flex justify-center">
+
+<div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md border">
 
 <h1 className="text-xl font-semibold mb-5 text-gray-700">
 Assign Student to Class
@@ -72,13 +73,13 @@ onChange={(e)=>setClassId(e.target.value)}
 <option>Select Class</option>
 
 {classes.map((cls)=>(
+
 <option key={cls._id} value={cls._id}>
 {cls.name} ({cls.section})
 </option>
 ))}
 </select>
 </div>
-
 
 <div className="flex items-center border rounded-lg px-3">
 <FaUserGraduate className="text-gray-400 mr-2"/>
@@ -89,6 +90,7 @@ onChange={(e)=>setStudentId(e.target.value)}
 <option>Select Student</option>
 
 {students.map((s)=>(
+
 <option key={s._id} value={s._id}>
 {s.name}
 </option>
