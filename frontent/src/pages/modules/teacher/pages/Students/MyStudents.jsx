@@ -42,7 +42,7 @@ fetchStudents();
 
 return(
 
-<div>
+<div className="p-4">
 
 <h1 className="text-2xl font-bold mb-4">
 My Students
@@ -58,27 +58,31 @@ List of students assigned to this teacher
 <p>No students assigned</p>
 ) : (
 
-<table className="w-full border">
+<div className="overflow-x-auto">
+
+<table className="min-w-full border">
 
 <thead className="bg-gray-200">
 <tr>
-<th className="p-2 border">Name</th>
-<th className="p-2 border">Email</th>
+<th className="p-2 border text-left">Name</th>
+<th className="p-2 border text-left">Email</th>
 </tr>
 </thead>
 
 <tbody>
 
 {students.map((s)=>(
-<tr key={s._id}>
+<tr key={s._id} className="hover:bg-gray-50">
 <td className="p-2 border">{s.name}</td>
-<td className="p-2 border">{s.email}</td>
+<td className="p-2 border break-all">{s.email}</td>
 </tr>
 ))}
 
 </tbody>
 
 </table>
+
+</div>
 
 )}
 

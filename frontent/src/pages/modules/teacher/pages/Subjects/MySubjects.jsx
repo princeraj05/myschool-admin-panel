@@ -42,7 +42,7 @@ fetchSubjects();
 
 return(
 
-<div>
+<div className="p-4">
 
 <h1 className="text-2xl font-bold mb-4">
 My Subjects
@@ -58,21 +58,23 @@ Subjects assigned to this teacher
 <p>No subjects assigned</p>
 ) : (
 
-<table className="w-full border">
+<div className="overflow-x-auto">
+
+<table className="min-w-full border">
 
 <thead className="bg-gray-200">
 <tr>
-<th className="p-2 border">Subject</th>
-<th className="p-2 border">Class</th>
+<th className="p-2 border text-left">Subject</th>
+<th className="p-2 border text-left">Class</th>
 </tr>
 </thead>
 
 <tbody>
 
 {subjects.map((s)=>(
-<tr key={s._id}>
+<tr key={s._id} className="hover:bg-gray-50">
 <td className="p-2 border">{s.name}</td>
-<td className="p-2 border">
+<td className="p-2 border break-words">
 {s.class?.name} ({s.class?.section})
 </td>
 </tr>
@@ -81,6 +83,8 @@ Subjects assigned to this teacher
 </tbody>
 
 </table>
+
+</div>
 
 )}
 
