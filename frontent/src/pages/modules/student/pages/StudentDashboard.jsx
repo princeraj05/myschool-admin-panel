@@ -58,11 +58,13 @@ return (
 
 <div>
 
-<h1 className="text-3xl font-bold mb-6 text-gray-800">
+<h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">
 Student Dashboard
 </h1>
 
-<div className="grid md:grid-cols-3 gap-6 mb-8">
+{/* Cards */}
+
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
 
 <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-xl shadow">
 <div className="flex justify-between items-center">
@@ -96,7 +98,10 @@ Student Dashboard
 
 </div>
 
-<div className="grid md:grid-cols-2 gap-6">
+
+{/* Charts Section */}
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
 <div className="bg-white p-6 rounded-xl shadow">
 
@@ -104,7 +109,9 @@ Student Dashboard
 Student Overview
 </h2>
 
-<ResponsiveContainer width="100%" height={300}>
+<div className="w-full h-[300px]">
+
+<ResponsiveContainer width="100%" height="100%">
 <BarChart data={chartData}>
 <XAxis dataKey="name"/>
 <YAxis/>
@@ -115,13 +122,15 @@ Student Overview
 
 </div>
 
+</div>
+
 <div className="bg-white p-6 rounded-xl shadow">
 
 <h2 className="text-xl font-semibold mb-4">
 Quick Info
 </h2>
 
-<ul className="space-y-3 text-gray-600">
+<ul className="space-y-3 text-gray-600 text-sm md:text-base">
 <li>📚 Subjects Enrolled : {data.subjects}</li>
 <li>📊 Attendance : {data.attendance}%</li>
 <li>📝 Upcoming Exams : {data.exams}</li>
