@@ -35,15 +35,14 @@ console.log("Profile Error:",err);
 
 return(
 
-<div className="p-6 flex justify-center">
+<div className="p-4 md:p-6 flex justify-center">
 
-<div className="w-full max-w-xl bg-white shadow-lg rounded-xl p-8">
+<div className="w-full max-w-xl bg-white shadow-lg rounded-xl p-6 md:p-8">
 
-<h2 className="text-2xl font-bold mb-8 text-gray-800">
+<h2 className="text-xl md:text-2xl font-bold mb-8 text-gray-800">
 My Profile
 </h2>
 
-{/* Avatar */}
 <div className="flex items-center gap-4 mb-8">
 
 <div className="w-14 h-14 flex items-center justify-center rounded-full bg-blue-500 text-white text-xl font-bold">
@@ -59,41 +58,30 @@ My Profile
 
 </div>
 
-{/* Profile Details */}
-
 <div className="space-y-5">
 
 <div className="flex items-center gap-3 border-b pb-3">
-
 <FaUserGraduate className="text-blue-500"/>
-
 <p className="text-gray-700">
 <span className="font-semibold">Name:</span> {student.name}
 </p>
-
 </div>
 
 <div className="flex items-center gap-3 border-b pb-3">
-
 <FaEnvelope className="text-green-500"/>
-
 <p className="text-gray-700">
 <span className="font-semibold">Email:</span> {student.email}
 </p>
-
 </div>
 
 <div className="flex items-center gap-3">
-
 <FaUserTag className="text-purple-500"/>
-
 <p className="text-gray-700">
-<span className="font-semibold">Role:</span> 
+<span className="font-semibold">Role:</span>
 <span className="ml-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
 {student.role}
 </span>
 </p>
-
 </div>
 
 </div>

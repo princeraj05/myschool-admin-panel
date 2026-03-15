@@ -27,9 +27,9 @@ Authorization:`Bearer ${token}`
 
 return(
 
-<div className="p-6">
+<div className="p-4 md:p-6">
 
-<h2 className="text-2xl font-bold mb-6 text-gray-800">
+<h2 className="text-xl md:text-2xl font-bold mb-6 text-gray-800">
 My Subjects
 </h2>
 
@@ -39,7 +39,7 @@ My Subjects
 
 ) : (
 
-<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
 {subjects.map((s,i)=>(
 
