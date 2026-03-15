@@ -35,7 +35,7 @@ setMenuOpen(false);
 
 return (
 
-<div className="flex min-h-screen bg-gray-100">
+<div className="flex min-h-screen bg-gray-100 overflow-hidden">
 
 {/* MOBILE OVERLAY */}
 
@@ -48,25 +48,45 @@ onClick={()=>setMenuOpen(false)}
 
 {/* SIDEBAR */}
 
-<div className={`fixed md:static top-0 left-0 h-full w-64 bg-slate-900 text-white p-4 flex flex-col justify-between transform ${menuOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 transition duration-300 z-50`}>
+<div
+className={`
+fixed md:static top-0 left-0 h-full w-64 bg-slate-900 text-white p-4
+flex flex-col justify-between
+transform ${menuOpen ? "translate-x-0" : "-translate-x-full"}
+md:translate-x-0
+transition-transform duration-300
+z-50
+`}
+>
 
-<div>
+<div className="overflow-y-auto">
 
 <h2 className="text-xl font-bold mb-6">
 MySchool Teacher
 </h2>
 
-<nav className="space-y-2 overflow-y-auto max-h-[80vh]">
+<nav className="space-y-2">
 
-<Link onClick={closeMenu} to="/teacher/dashboard" className="flex items-center gap-3 p-2 rounded hover:bg-slate-700">
+<Link
+onClick={closeMenu}
+to="/teacher/dashboard"
+className="flex items-center gap-3 p-2 rounded hover:bg-slate-700"
+>
 <FaTachometerAlt/> Dashboard
 </Link>
 
-<Link onClick={closeMenu} to="/teacher/my-classes" className="flex items-center gap-3 p-2 hover:bg-slate-700 rounded">
+<Link
+onClick={closeMenu}
+to="/teacher/my-classes"
+className="flex items-center gap-3 p-2 hover:bg-slate-700 rounded"
+>
 <FaSchool/> My Classes
 </Link>
 
-<button onClick={()=>setStudentsOpen(!studentsOpen)} className="flex items-center justify-between w-full p-2 hover:bg-slate-700 rounded">
+<button
+onClick={()=>setStudentsOpen(!studentsOpen)}
+className="flex items-center justify-between w-full p-2 hover:bg-slate-700 rounded"
+>
 <span className="flex items-center gap-3">
 <FaUserGraduate/> Students
 </span>
@@ -75,13 +95,20 @@ MySchool Teacher
 
 {studentsOpen && (
 <div className="ml-6 space-y-1">
-<Link onClick={closeMenu} to="/teacher/my-students" className="p-2 block hover:bg-slate-700 rounded">
+<Link
+onClick={closeMenu}
+to="/teacher/my-students"
+className="p-2 block hover:bg-slate-700 rounded"
+>
 My Students
 </Link>
 </div>
 )}
 
-<button onClick={()=>setAttendanceOpen(!attendanceOpen)} className="flex items-center justify-between w-full p-2 hover:bg-slate-700 rounded">
+<button
+onClick={()=>setAttendanceOpen(!attendanceOpen)}
+className="flex items-center justify-between w-full p-2 hover:bg-slate-700 rounded"
+>
 <span className="flex items-center gap-3">
 <FaClipboardCheck/> Attendance
 </span>
@@ -90,21 +117,39 @@ My Students
 
 {attendanceOpen && (
 <div className="ml-6 space-y-1">
-<Link onClick={closeMenu} to="/teacher/mark-attendance" className="p-2 block hover:bg-slate-700 rounded">
+
+<Link
+onClick={closeMenu}
+to="/teacher/mark-attendance"
+className="p-2 block hover:bg-slate-700 rounded"
+>
 Mark Attendance
 </Link>
 
-<Link onClick={closeMenu} to="/teacher/attendance-report" className="p-2 block hover:bg-slate-700 rounded">
+<Link
+onClick={closeMenu}
+to="/teacher/attendance-report"
+className="p-2 block hover:bg-slate-700 rounded"
+>
 Attendance Report
 </Link>
+
 </div>
 )}
 
-<Link onClick={closeMenu} to="/teacher/my-subjects" className="flex items-center gap-3 p-2 hover:bg-slate-700 rounded">
+<Link
+onClick={closeMenu}
+to="/teacher/my-subjects"
+className="flex items-center gap-3 p-2 hover:bg-slate-700 rounded"
+>
 <FaBook/> My Subjects
 </Link>
 
-<Link onClick={closeMenu} to="/teacher/exam-schedule" className="flex items-center gap-3 p-2 hover:bg-slate-700 rounded">
+<Link
+onClick={closeMenu}
+to="/teacher/exam-schedule"
+className="flex items-center gap-3 p-2 hover:bg-slate-700 rounded"
+>
 <FaCalendarAlt/> Exam Schedule
 </Link>
 
@@ -112,7 +157,10 @@ Attendance Report
 
 </div>
 
-<button onClick={handleLogout} className="flex items-center gap-3 p-2 bg-red-600 hover:bg-red-700 rounded">
+<button
+onClick={handleLogout}
+className="flex items-center gap-3 p-2 bg-red-600 hover:bg-red-700 rounded mt-4"
+>
 <FaSignOutAlt/> Logout
 </button>
 
@@ -128,7 +176,10 @@ Attendance Report
 
 <div className="flex items-center gap-3">
 
-<button className="md:hidden text-xl" onClick={()=>setMenuOpen(!menuOpen)}>
+<button
+className="md:hidden text-xl"
+onClick={()=>setMenuOpen(!menuOpen)}
+>
 <FaBars/>
 </button>
 
