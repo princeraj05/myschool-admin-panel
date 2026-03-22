@@ -27,38 +27,16 @@ const server = http.createServer(app);
 
 // ================= CORS =================
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "https://myschool-admin-panel.vercel.app",
-  // Vercel preview deployments (all branches/commits)
-  /^https:\/\/myschool-admin-panel.*\.vercel\.app$/,
-];
-
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, curl, Postman)
-      if (!origin) return callback(null, true);
-
-      const allowed = allowedOrigins.some((o) =>
-        o instanceof RegExp ? o.test(origin) : o === origin
-      );
-
-      if (allowed) {
-        callback(null, true);
-      } else {
-        callback(new Error(`CORS: origin '${origin}' not allowed`));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+    origin: [
+      "http://localhost:5173",
+      "https://myschool-admin-panel.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   })
 );
-
-// Handle preflight requests for all routes
-app.options("*", cors());
 
 
 // ================= MIDDLEWARE =================
@@ -99,20 +77,16 @@ app.use("/api/admin/profile", adminProfileRoutes);
 
 const io = new Server(server, {
   cors: {
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      const allowed = allowedOrigins.some((o) =>
-        o instanceof RegExp ? o.test(origin) : o === origin
-      );
-      allowed ? callback(null, true) : callback(new Error("Socket CORS blocked"));
-    },
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
+    origin: [
+      "http://localhost:5173",
+      "https://myschool-admin-panel.vercel.app"
+    ]
+  }
 });
 
 io.on("connection", (socket) => {
   console.log("Client connected:", socket.id);
+
   socket.on("disconnect", () => {
     console.log("Client disconnected:", socket.id);
   });
